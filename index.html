@@ -1,22 +1,23 @@
 <!doctype html>
 <html lang="id">
     <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap" rel="stylesheet">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Rafli Portfolio</title>
+        <title>Kipli Portfolio</title>
         <style>
             body {
-                font-family:
-                    Times New Roman,
-                    sans-serif;
+                font-family: Skranji, "Times New Roman", serif;
                 margin: 0;
-                background: #0f1115;
+                background: #000;
                 color: #eee;
             }
             header {
                 padding: 80px 20px;
                 text-align: center;
-                background: #171a21;
+                background: #1f1f1f;
             }
             h1 {
                 font-size: 3rem;
@@ -31,7 +32,7 @@
                 padding: 50px 20px;
             }
             .card {
-                background: #1b1f27;
+                background: #1f1f1f;
                 padding: 20px;
                 border-radius: 12px;
                 margin: 15px 0;
@@ -54,59 +55,85 @@
                 padding: 30px;
                 opacity: 0.7;
             }
-            .gallery-image {
-                width: 100%;
-                height: 400px;
-                object-fit: cover;
-                border-radius: 10px;
+            .gallery-image{
+                width:100%;
+                max-width:800px;
+                max-height:700px;
+                object-fit:contain;
+                border-radius:10px;
+
+                display: block;
+                margin: 0 auto;
             }
 
-            .gallery-controls {
-                margin-top: 15px;
-                display: flex;
-                justify-content: center;
-                gap: 10px;
+            .thumbnails{
+                display:flex;
+                gap:10px;
+                margin-top:15px;
+                overflow-x:auto;
             }
 
-            .gallery-controls button {
-                padding: 10px 20px;
-                cursor: pointer;
-                border: none;
-                border-radius: 8px;
+            .thumbnails img{
+                width:100px;
+                height:100px;
+                object-fit:cover;
+                cursor:pointer;
+                border-radius:8px;
+                transition:0.2s;
+                border:2px solid transparent;
             }
+
+            .thumbnails img:hover{
+                transform:scale(1.05);
+                border:2px solid white
+            }
+
+            .hidden{
+                opacity:0;
+                transform:translateY(50px);
+                transition:all 0.8s ease;
+            }
+
+            .show{
+                opacity:1;
+                transform:translateY(0);
+            }
+
         </style>
     </head>
     <body>
         <header>
-            <img src="image/maxverstapen.jpg" alt="Foto Profil" width="250" />
-            <h1>Rafli</h1>
-            <p class="tag">Designer • Artist • Game Developer</p>
-            <p>Make a change, adjust reality</p>
-            <a class="btn" href="#projects">Lihat Project</a>
+            <div class="card hidden">
+                <img src="image/maxverstapen.jpg" alt="Foto Profil" width="250" />
+                <h1>Kipli</h1>
+                <p class="tag">Designer • Artist • Game Developer</p>
+                <p>Make a change, adjust reality</p>
+                <section id="projects">
+            </div>
         </header>
 
         <section>
             <h2>Tentang Saya</h2>
-            <div class="card">
+            <div class="card hidden">
                 Hi my name is Rafli i like to make art stuff, mostly make
                 sticker designs, gamedev and learn tech stuff
             </div>
         </section>
 
-        <section id="projects">
+        <section id="card">
             <h2>Project</h2>
             <div class="grid">
-                <div class="card">
-                    <img src="image/bao.jpg" alt="Crown Codex" width="100%" />
+                <div class="card hidden">
+                    <img src="image/bao.jpg" alt="Crown Codex" width="100%"/>
                     <h3>Crown Codex Chronicles</h3>
                     <p>
                         Universe original bertema kekuasaan, sihir bernama
                         Crown, dan konflik manusia.
                     </p>
                 </div>
-                <div class="card">
+                <div class="card hidden">
                     <img
-                        src="image/bao.jpg"
+                        src="image/Joger.jpg"
                         alt="Division: Rogue"
                         width="100%"
                     />
@@ -117,11 +144,12 @@
                         sci-fi fantasi dengan yang berlatar dunia Crown Codex.
                     </p>
                 </div>
-                <div class="card">
+                <div class="card hidden">
                     <img
-                        src="image/bao.jpg"
+                        src="image/Sticker pack_2.png"
                         alt="Digitalwat.ink"
                         width="100%"
+                        style="transform: rotate(-90deg) scale(2);"
                     />
                     <h3>Digitalwat.ink</h3>
                     <p>
@@ -130,22 +158,31 @@
                 </div>
             </div>
         </section>
-        <div class="card">
-            <img
-                id="gallery-image"
-                src="images/bao1.jpg"
-                alt="Artwork"
-                class="gallery-image"
-            />
+    <div class="card hidden">
 
-            <div class="gallery-controls">
-                <button onclick="prevImage()">⬅ Prev</button>
-                <button onclick="nextImage()">Next ➡</button>
-            </div>
+        <img
+            id="gallery-image"
+            src="image/1.png"
+            class="gallery-image"
+            alt="Artwork"
+        >
+
+        <div class="thumbnails">
+
+            <img src="image/1.png" onclick="changeImage(this.src)">
+            <img src="image/2.png" onclick="changeImage(this.src)">
+            <img src="image/3.png" onclick="changeImage(this.src)">
+            <img src="image/4.png" onclick="changeImage(this.src)">
+            <img src="image/5.png" onclick="changeImage(this.src)">
+            <img src="image/6.jpg" onclick="changeImage(this.src)">
+            <img src="image/7.png" onclick="changeImage(this.src)">
+
         </div>
+
+    </div>
         <section>
             <h2>Kontak</h2>
-            <div class="card">
+            <div class="card hidden">
                 <p>Email: rafliilham234@gmail.com</p>
                 <p>Instagram: @digitalwat.ink</p>
             </div>
@@ -154,41 +191,36 @@
         <footer>© 2026 Rafli Portfolio</footer>
 
         <script>
-            const images = [
-                "images/1.png",
-                "images/2.png",
-                "images/3.png",
-                "images/4.jpg",
-                "images/5.jpg",
-                "images/6.jpg",
-                "images/7.jpg",
+            const image = [
+                "image/1.png",
+                "image/2.png",
+                "image/3.png",
+                "image/4.png",
+                "image/5.png",
+                "image/6.jpg",
+                "image/7.png",
             ];
 
             let current = 0;
 
-            function showImage() {
-                document.getElementById("gallery-image").src = images[current];
+            function changeImage(src){
+                document.getElementById("gallery-image").src = src;
             }
 
-            function nextImage() {
-                current++;
+            const hiddenElements = document.querySelectorAll('.hidden');
 
-                if (current >= images.length) {
-                    current = 0;
-                }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
 
-                showImage();
-            }
+                    if(entry.isIntersecting){
+                        entry.target.classList.add('show');
+                    }
 
-            function prevImage() {
-                current--;
+                });
+            });
 
-                if (current < 0) {
-                    current = images.length - 1;
-                }
+            hiddenElements.forEach((el) => observer.observe(el));
 
-                showImage();
-            }
         </script>
     </body>
 </html>
